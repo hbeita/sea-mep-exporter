@@ -4,10 +4,10 @@ require_relative 'import/seed_students'
 require 'csv'
 require_relative 'import/students_ids'
 class Main
-  def self.run(self_clean: true, drop_table: false, just_zip: true)
+  def self.run(self_clean: false, drop_table: false)
     # drop students table
     if drop_table
-      puts 'Truncating students table'
+      puts 'Drop students table'
       db = Database.new
       db.run('DROP TABLE IF EXISTS students')
     end
@@ -42,4 +42,8 @@ class Main
   end
 end
 
-Main.run(self_clean: false, drop_table: true)
+# use arguments to run the script to decide if you want to drop the table and clean the export_csv folder
+self_clean = ARGV[0] == 'c' ? true : false
+drop_table = ARGV[1] == 'd' ? true : false
+
+Main.run(self_clean: , drop_table: )
