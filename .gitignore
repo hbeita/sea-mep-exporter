@@ -12,3 +12,8 @@ export_csv/
 
 # .zip files
 *.zip
+
+# DS_Store files dumplings
+.DS_Store
+db/.DS_Store
+```
