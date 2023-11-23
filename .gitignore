@@ -1,2 +1,14 @@
 registros/
 export_csv/
+
+# idea folder stuff
+.idea/
+
+# all excels files
+*.xlsx
+
+# sqlite3 files
+*.sqlite3
+
+# .zip files
+*.zip
