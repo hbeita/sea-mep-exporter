@@ -8,12 +8,16 @@ GEM
     simple_xlsx_reader (5.0.0)
       nokogiri
       rubyzip
+    sqlite3 (1.6.8-x86_64-darwin)
+    unicode_utils (1.4.0)
 
 PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
   simple_xlsx_reader
+  sqlite3
+  unicode_utils
 
 RUBY VERSION
    ruby 3.2.1p31

@@ -12,3 +12,6 @@
 
 # all excels files
 *.xlsx
+
+# ignore sqlite files
+*.sqlite3
