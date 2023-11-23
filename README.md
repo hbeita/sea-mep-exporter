@@ -24,7 +24,7 @@ row 1 = 000000000, Chuckleberry Quackenbush Square
 
 
 ### Additional commands
-`c` after the ruby command will clean the export folder and generate a zip file with all the CSV files
-`d` after the ruby command will drop the student's table and create it again on every run (useful for testing import ids)
+- `c` after the ruby command will clean the export folder and generate a zip file with all the CSV files
+- `d` after the ruby command will drop the student's table and create it again on every run (useful for testing import ids)
 
-Is extremely fast so it doesn't matter if you run it multiple times, it will just overwrite the files and generate the new db
+Is super fast so it doesn't matter if you run it multiple times, it will just overwrite the files and generate the new db
