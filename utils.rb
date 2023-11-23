@@ -4,18 +4,18 @@ module Utils
   def normalize_string(string:)
     return if string.nil?
 
-    replaced_accented_characters = UnicodeUtils.nfkd(string).gsub(/[^\p{ASCII}]/, '')
+    clean_accents_text = UnicodeUtils.nfkd(string).gsub(/[^\p{ASCII}]/, '')
 
-    replaced_accented_characters.gsub(/[,']/, '')
+    clean_accents_text.gsub(/[,']/, '')
 
     # trim beginning and ending spaces
-    replaced_accented_characters.strip
+    clean_accents_text.strip
 
     # just one space between words
-    replaced_accented_characters.gsub(/\s+/, ' ')
+    clean_accents_text.gsub(/\s+/, ' ')
 
-    # split into words and remove the last word if index is greater than 3
-    words = replaced_accented_characters.split(' ')
+    # split into words and remove the last word if index is greater than 3 # Arbitrary due to super bad Excel format
+    words = clean_accents_text.split(' ')
     words.pop if words.length > 3
     words.join(' ')
   end

@@ -18,6 +18,7 @@ class SeedStudent
       );
     SQL
   end
+
   def insert_student(id:, full_name:, group: nil)
     # trim all spaces from id
     id = id.to_s.gsub(/\s+/, '')
