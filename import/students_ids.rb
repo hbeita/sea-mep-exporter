@@ -4,7 +4,6 @@ require_relative 'seed_students'
 module Import
   class StudentsIds
     def initialize(file_path:)
-      @db = Database.new
       @path = file_path
     end
 
