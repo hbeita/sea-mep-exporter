@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'seed_students'
 
 module Import
@@ -12,9 +13,9 @@ module Import
 
       xls_file.sheets.each do |ids_sheet|
         puts '=============================================='
-        puts "#{ids_sheet.name}"
+        puts ids_sheet.name
         puts '=============================================='
-        ids_sheet.rows.each_with_index do |student, i|
+        ids_sheet.rows.each_with_index do |student, _i|
           # puts sheet name
           id = student[0] # column A in excel is ids
           full_name = student[1] # column B in excel is full_name

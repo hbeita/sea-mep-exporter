@@ -1,5 +1,7 @@
 # frozen_string_literal: true
+
 require 'unicode_utils'
+
 module Utils
   def normalize_string(string:)
     return if string.nil?

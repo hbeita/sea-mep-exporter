@@ -1,20 +1,42 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ast (2.4.2)
     nokogiri (1.15.3-x86_64-darwin)
       racc (~> 1.4)
+    parallel (1.23.0)
+    parser (3.2.2.4)
+      ast (~> 2.4.1)
+      racc
     racc (1.7.1)
+    rainbow (3.1.1)
+    regexp_parser (2.8.2)
+    rexml (3.2.6)
+    rubocop (0.88.0)
+      parallel (~> 1.10)
+      parser (>= 2.7.1.1)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.7)
+      rexml
+      rubocop-ast (>= 0.1.0, < 1.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (0.8.0)
+      parser (>= 2.7.1.5)
+    ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     simple_xlsx_reader (5.0.0)
       nokogiri
       rubyzip
     sqlite3 (1.6.8-x86_64-darwin)
+    unicode-display_width (1.8.0)
     unicode_utils (1.4.0)
 
 PLATFORMS
   x86_64-darwin-22
 
 DEPENDENCIES
+  rubocop
   simple_xlsx_reader
   sqlite3
   unicode_utils

@@ -1,8 +1,10 @@
 # frozen_string_literal: true
+
 require_relative 'sea_mep_csv_exporter'
 require_relative 'import/seed_students'
 require 'csv'
 require_relative 'import/students_ids'
+
 class Main
   def self.run(self_clean: false, drop_table: false)
     # drop students table
@@ -25,7 +27,7 @@ class Main
     students = db.run('SELECT * FROM students')
     puts "Students table has #{students.count} rows"
 
-    puts "create export directory"
+    puts 'create export directory'
     Dir.mkdir('export_csv') unless Dir.exist?('export_csv')
 
     puts 'Running SeaMepCsvExporter'
@@ -43,7 +45,7 @@ class Main
 end
 
 # use arguments to run the script to decide if you want to drop the table and clean the export_csv folder
-self_clean = ARGV[0] == 'c' ? true : false
-drop_table = ARGV[1] == 'd' ? true : false
+self_clean = ARGV[0] == 'c'
+drop_table = ARGV[1] == 'd'
 
-Main.run(self_clean: , drop_table: )
+Main.run(self_clean:, drop_table:)

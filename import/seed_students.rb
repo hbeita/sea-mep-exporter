@@ -1,7 +1,9 @@
 # frozen_string_literal: true
+
 require 'sqlite3'
 require_relative '../db/database'
 require_relative '../utils'
+
 class SeedStudent
   include Utils
   def initialize

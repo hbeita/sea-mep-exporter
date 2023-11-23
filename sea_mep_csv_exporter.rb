@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'simple_xlsx_reader'
 require 'csv'
 require_relative 'import/seed_students'
@@ -25,7 +26,7 @@ class SeaMepCsvExporter
 
       register = xls_file.sheets[0]
       # create a new csv file
-      CSV.open("export_csv/#{registro_csv_name}.csv", "wb", col_sep: ';') do |csv|
+      CSV.open("export_csv/#{registro_csv_name}.csv", 'wb', col_sep: ';') do |csv|
         csv << ['id', 'Nombre', 'Trabajo cotidiano', 'Tareas', 'Prueba', 'Asistencia'].map { |value| value.to_s.strip }
 
         name_idx = alphabet_index('C')
@@ -36,7 +37,7 @@ class SeaMepCsvExporter
         exam_3_idx = alphabet_index('P')
         asistencia_idx = alphabet_index('L')
 
-        register.rows.each_with_index do |row, index|
+        register.rows.each_with_index do |row, _index|
           name = row[name_idx]
           id = row[alphabet_index('A')]
 
@@ -46,7 +47,7 @@ class SeaMepCsvExporter
 
           cedula = cedula_by_name(full_name: name)
           if cedula.nil?
-            not_found_ids << { name: name, archivo: registro_csv_name}
+            not_found_ids << { name:, archivo: registro_csv_name }
             next
           end
 
@@ -65,22 +66,24 @@ class SeaMepCsvExporter
           puts "Tareas: #{tareas}"
           puts "Examenes: #{final_grade} [#{exam_one} + #{exam_two} + #{exam_three} ]"
           puts "Asistencia: #{asistencia}"
-          csv << [cedula, normalize_string(string: name), cotidiano, tareas, final_grade, asistencia].map { |value| value.to_s.strip}
-          puts "------------------"
+          csv << [cedula, normalize_string(string: name), cotidiano, tareas, final_grade, asistencia].map do |value|
+            value.to_s.strip
+          end
+          puts '------------------'
         end
       end
       puts "@@@@@@@@@ End book => #{registro_csv_name}"
     end
 
-    not_found_ids_file(not_found_ids: not_found_ids)
+    not_found_ids_file(not_found_ids:)
   end
 
   private
 
   def not_found_ids_file(not_found_ids: [])
-    puts "Creating not found ids file"
-    CSV.open("export_csv/not_found_ids.csv", "wb", col_sep: ';') do |csv|
-      csv << ['Nombre', 'Archivo'].map { |value| value.to_s.strip }
+    puts 'Creating not found ids file'
+    CSV.open('export_csv/not_found_ids.csv', 'wb', col_sep: ';') do |csv|
+      csv << %w[Nombre Archivo].map { |value| value.to_s.strip }
       not_found_ids.each do |student|
         csv << [student[:name], student[:archivo]].map { |value| value.to_s.strip }
       end
@@ -95,9 +98,7 @@ class SeaMepCsvExporter
     puts query
     student = @db.run query
 
-    if student.empty?
-      puts "NOT FOUND: #{full_name}"
-    end
+    puts "NOT FOUND: #{full_name}" if student.empty?
 
     student.empty? ? nil : student.first[0]
   end
